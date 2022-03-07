@@ -51,7 +51,7 @@ GET /api/v1/game/gamers/{game_level}
 ## Software Tests Run
 - Run application with bach command from project root `./scripts/run-tests.sh`
 - Run the application from the IDEA itself
-- 
+
 ## Software Run
 - Run application with bach command from project root `./scripts/run.sh`
 - Run the application from the IDEA itself
