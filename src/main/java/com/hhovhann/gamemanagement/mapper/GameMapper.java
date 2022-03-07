@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public class GameMapper {
 
     public SearchGamerResponseDto toSearchDto(Game game) {
-        // todo add mapping to game entity
         return SearchGamerResponseDto.builder()
                 .gameId(game.getId())
                 .gameLevel(game.getGameLevel())

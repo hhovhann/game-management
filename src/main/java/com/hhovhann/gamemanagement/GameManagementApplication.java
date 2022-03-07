@@ -21,7 +21,7 @@ public class GameManagementApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(GameRepository repository) {
+    public CommandLineRunner loadAllEntities(GameRepository repository) {
         return args -> {
             // Fifa 22 game players
             var fifa22Gamers = List.of(
@@ -51,9 +51,9 @@ public class GameManagementApplication {
             repository.save(new Game(2L, "TAKKEN 7", GameLevel.N00B, takken7Gamers));
             repository.save(new Game(3L, "MORTAL COMBAT 11", GameLevel.INVINCIBLE, mortalCombat11Gamers));
 
-            log.info("findByIdAndGameLevel: ", repository.findByIdAndGameLevel(1L, GameLevel.PRO).get());
-            log.info("findByIdAndGameLevel: ", repository.findByIdAndGameLevel(2L, GameLevel.N00B).get());
-            log.info("findByIdAndGameLevel: ", repository.findByIdAndGameLevel(3L, GameLevel.INVINCIBLE).get());
+            log.info("findByIdAndGameLevel 1L and PRO : {}", repository.findByIdAndGameLevel(1L, GameLevel.PRO).get());
+            log.info("findByIdAndGameLevel 2L and N00B : {}", repository.findByIdAndGameLevel(2L, GameLevel.N00B).get());
+            log.info("findByIdAndGameLevel 3L and INVINCIBLE : {}", repository.findByIdAndGameLevel(3L, GameLevel.INVINCIBLE).get());
         };
     }
 

@@ -2,11 +2,13 @@ package com.hhovhann.gamemanagement.dto;
 
 import com.hhovhann.gamemanagement.entity.data.GameLevel;
 import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.Enumerated;
 
 import static javax.persistence.EnumType.STRING;
 
+@Data
 @Builder
 public class SearchGamerResponseDto {
 
@@ -14,7 +16,7 @@ public class SearchGamerResponseDto {
 
     private Long gamerId;
 
-    @Enumerated(STRING)
+//    @Enumerated(STRING)
     private GameLevel gameLevel;
 
     private String country;

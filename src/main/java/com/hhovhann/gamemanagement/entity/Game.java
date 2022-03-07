@@ -4,12 +4,7 @@ import com.hhovhann.gamemanagement.entity.data.GameLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
@@ -41,7 +36,7 @@ public class Game implements Serializable {
     @NotNull
     private GameLevel gameLevel;
 
-    @OneToMany(mappedBy = "game", cascade = { PERSIST, MERGE})
+    @OneToMany(mappedBy = "game", cascade = { PERSIST, MERGE}, fetch = FetchType.EAGER)
     private List<Gamer> gamers = new ArrayList<>();
 
 
