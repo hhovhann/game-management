@@ -1,6 +1,8 @@
 package com.hhovhann.gamemanagement.entity;
 
 import com.hhovhann.gamemanagement.entity.data.GameLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Id;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,6 +23,8 @@ import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Game implements Serializable {
     @Serial
     private static final long serialVersionUID = -9131478947119037529L;
@@ -29,14 +34,14 @@ public class Game implements Serializable {
     @SequenceGenerator(allocationSize = 70, name = "game_seq", sequenceName = "game_sequence")
     private Long id;
 
-    @NotNull
+    @NotBlank
     String name;
 
     @Enumerated(STRING)
     @NotNull
     private GameLevel gameLevel;
 
-    @OneToMany(mappedBy = "gamer", cascade = { PERSIST, MERGE})
+    @OneToMany(mappedBy = "game", cascade = { PERSIST, MERGE})
     private List<Gamer> gamers = new ArrayList<>();
 
 

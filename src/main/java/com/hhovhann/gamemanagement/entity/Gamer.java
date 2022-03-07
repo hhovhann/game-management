@@ -1,7 +1,5 @@
 package com.hhovhann.gamemanagement.entity;
 
-import com.hhovhann.gamemanagement.entity.data.Geography;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -15,8 +13,15 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Gamer implements Serializable {
+
+    public Gamer(Long id, String name, String email, String country, String city){
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.country = country;
+        this.city = city;
+    }
 
     @Serial
     private static final long serialVersionUID = -7254728412209071436L;
@@ -33,9 +38,11 @@ public class Gamer implements Serializable {
     @Email
     private String email;
 
-    @Embedded
-    @NotNull
-    private Geography geography;
+    @NotBlank
+    private String country;
+
+    @NotBlank
+    private String city;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id", foreignKey = @ForeignKey(name = "fk_gamer_game_id"))
@@ -66,12 +73,20 @@ public class Gamer implements Serializable {
         this.email = email;
     }
 
-    public Geography getGeography() {
-        return geography;
+    public String getCountry() {
+        return country;
     }
 
-    public void setGeography(Geography geography) {
-        this.geography = geography;
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Game getGame() {

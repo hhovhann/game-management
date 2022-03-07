@@ -6,6 +6,7 @@ import com.hhovhann.gamemanagement.dto.SearchGamerRequestDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
 import com.hhovhann.gamemanagement.entity.Game;
 import com.hhovhann.gamemanagement.entity.Gamer;
+import com.hhovhann.gamemanagement.entity.data.GameLevel;
 import com.hhovhann.gamemanagement.exception.GameNotFoundException;
 import com.hhovhann.gamemanagement.mapper.GameMapper;
 import com.hhovhann.gamemanagement.mapper.GamerMapper;
@@ -14,6 +15,7 @@ import com.hhovhann.gamemanagement.repository.GamerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,11 +64,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<SearchGamerResponseDto> retrieveAllGamers(SearchGamerRequestDto searchGamerRequestDto) {
         // Find the game or throw game not found exception
-        Game game = gameRepository.findByIdAndGameLevelAndGamersGeography(searchGamerRequestDto.gameId, searchGamerRequestDto.gameLevel.name(), searchGamerRequestDto.geography).orElseThrow(() -> new GameNotFoundException("No game was found with specified Id and game level"));
+        Game game = gameRepository.findByIdAndGameLevel(searchGamerRequestDto.gameId, searchGamerRequestDto.gameLevel).orElseThrow(() -> new GameNotFoundException("No game was found with specified Id and game level"));
         // Return all gamers with specific game id, game level and geography
         return game.getGamers()
                 .stream()
-//                .filter(gamer -> gamer.getGeography().equals(searchGamerRequestDto.geography))
+                .filter(gamer -> Objects.equals(gamer.getCountry(), searchGamerRequestDto.country) && Objects.equals(gamer.getCity(), searchGamerRequestDto.city))
                 .map(gamer -> gameMapper.toSearchDto(game))
                 .collect(Collectors.toList());
     }
@@ -74,10 +76,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<SearchGamerResponseDto> retrieveGamersOnSpecificLevel(Long gameId, String gameLevel) {
         // Find the gamer throw games not found exception
-        Game game = gameRepository.findByIdAndGameLevel(gameId, gameLevel).orElseThrow(() -> new GameNotFoundException("No game was found with specified Id and game level"));
+        Game game = gameRepository.findByIdAndGameLevel(gameId, GameLevel.valueOf(gameLevel))
+                .orElseThrow(() -> new GameNotFoundException("No game was found with specified Id and game level"));
         // Return all gamers with specific game level per game
         return game.getGamers().stream()
                 .map(gamerMapper::toSearchDto)
                 .collect(Collectors.toList());
-     }
+    }
 }

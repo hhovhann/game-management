@@ -2,8 +2,7 @@ package com.hhovhann.gamemanagement.dto;
 
 
 import com.hhovhann.gamemanagement.entity.data.GameLevel;
-import com.hhovhann.gamemanagement.entity.data.Geography;
-import org.springframework.validation.annotation.Validated;
+ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
@@ -20,5 +19,8 @@ public class SearchGamerRequestDto {
     public GameLevel gameLevel;
 
     @NotNull
-    public Geography geography;
+    public String country;
+
+    @NotNull
+    public String city;
 }

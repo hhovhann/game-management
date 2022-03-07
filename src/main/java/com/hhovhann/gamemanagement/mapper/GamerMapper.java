@@ -11,7 +11,8 @@ public class GamerMapper {
         return SearchGamerResponseDto.builder()
                 .gamerId(gamer.getId())
                 .gameId(gamer.getGame().getId())
-                .geography(gamer.getGeography())
+                .country(gamer.getCountry())
+                .city(gamer.getCity())
                 .build();
     }
 }

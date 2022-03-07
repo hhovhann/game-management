@@ -10,7 +10,10 @@ public class GameMapper {
 
     public SearchGamerResponseDto toSearchDto(Game game) {
         // todo add mapping to game entity
-        return null;
+        return SearchGamerResponseDto.builder()
+                .gameId(game.getId())
+                .gameLevel(game.getGameLevel())
+                .build();
     }
 
     public LinkedGamerResponseDto toLinkedGamerDto(Game game) {
