@@ -1,4 +1,4 @@
-# game-management
+# Game Management Software
 Game Management Demo project for Spring Boot
 
 # Software Document
