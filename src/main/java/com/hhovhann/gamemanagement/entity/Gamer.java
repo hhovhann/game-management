@@ -2,10 +2,10 @@ package com.hhovhann.gamemanagement.entity;
 
 import com.hhovhann.gamemanagement.entity.data.Level;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serial;
 import java.io.Serializable;
 
 import static javax.persistence.EnumType.STRING;
@@ -15,7 +15,6 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @NoArgsConstructor
 public class Gamer implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = -7254728412209071436L;
 
     public Gamer(Long id, String name, Level level, String country, String city) {
