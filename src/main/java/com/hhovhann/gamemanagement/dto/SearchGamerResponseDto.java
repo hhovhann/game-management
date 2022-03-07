@@ -1,25 +1,17 @@
 package com.hhovhann.gamemanagement.dto;
 
-import com.hhovhann.gamemanagement.entity.data.GameLevel;
+import com.hhovhann.gamemanagement.entity.data.Level;
 import lombok.Builder;
 import lombok.Data;
-
-import javax.persistence.Enumerated;
-
-import static javax.persistence.EnumType.STRING;
 
 @Data
 @Builder
 public class SearchGamerResponseDto {
 
     private Long gameId;
-
-    private Long gamerId;
-
-//    @Enumerated(STRING)
-    private GameLevel gameLevel;
-
+    private String gameName;
+    private Level level;
     private String country;
-
     private String city;
+
 }

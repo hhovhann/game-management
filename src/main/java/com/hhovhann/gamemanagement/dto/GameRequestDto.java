@@ -1,9 +1,12 @@
 package com.hhovhann.gamemanagement.dto;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-public class LinkedGamerRequestDto {
+@Data
+public class GameRequestDto {
     @NotNull
     @Positive(message = "Game Id should be positive")
     public Long gameId;
@@ -13,19 +16,4 @@ public class LinkedGamerRequestDto {
     @Positive(message = "Gamer Id should be positive")
     public Long gamerId;
 
-    public Long getGameId() {
-        return gameId;
-    }
-
-    public void setGameId(Long gameId) {
-        this.gameId = gameId;
-    }
-
-    public Long getGamerId() {
-        return gamerId;
-    }
-
-    public void setGamerId(Long gamerId) {
-        this.gamerId = gamerId;
-    }
 }

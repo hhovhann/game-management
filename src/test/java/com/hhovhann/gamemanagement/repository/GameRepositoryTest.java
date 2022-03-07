@@ -4,7 +4,6 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import com.hhovhann.gamemanagement.entity.Game;
-import com.hhovhann.gamemanagement.entity.data.GameLevel;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ class GameRepositoryTest {
 
         Game gameEntity = new Game();
         gameEntity.setName("FIFA 22");
-        gameEntity.setGameLevel(GameLevel.PRO);
         gameRepository.save(gameEntity);
 
         assertThat(gameRepository.count()).isEqualTo(1); //assertion is made by @ExpectedDataset

@@ -1,12 +1,10 @@
 package com.hhovhann.gamemanagement.entity;
 
-import com.hhovhann.gamemanagement.entity.data.GameLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import java.util.List;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -31,10 +28,6 @@ public class Game implements Serializable {
 
     @NotBlank
     String name;
-
-    @Enumerated(STRING)
-    @NotNull
-    private GameLevel gameLevel;
 
     @OneToMany(mappedBy = "game", cascade = { PERSIST, MERGE}, fetch = FetchType.EAGER)
     private List<Gamer> gamers = new ArrayList<>();
@@ -54,14 +47,6 @@ public class Game implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public GameLevel getGameLevel() {
-        return gameLevel;
-    }
-
-    public void setGameLevel(GameLevel gameLevel) {
-        this.gameLevel = gameLevel;
     }
 
     public List<Gamer> getGamers() {

@@ -9,8 +9,9 @@ public class GamerMapper {
 
     public SearchGamerResponseDto toSearchDto(Gamer gamer) {
         return SearchGamerResponseDto.builder()
-                .gamerId(gamer.getId())
                 .gameId(gamer.getGame().getId())
+                .gameName(gamer.getGame().getName())
+                .level(gamer.getLevel())
                 .country(gamer.getCountry())
                 .city(gamer.getCity())
                 .build();

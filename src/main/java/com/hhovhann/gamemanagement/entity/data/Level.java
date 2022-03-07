@@ -1,7 +1,7 @@
 package com.hhovhann.gamemanagement.entity.data;
 
-public enum GameLevel {
+public enum Level {
     INVINCIBLE,
     PRO,
-    N00B;
+    N00B
 }

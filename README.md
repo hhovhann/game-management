@@ -50,30 +50,18 @@ Example: DELETE /api/v1/game/gamers
 }
 ```
 
-* Search Gamers by Game Level, Game, Geography (country, city) 
+* Search all Gamers
 ```
 GET /api/v1/game/gamers
-{
-  gameId: {gameId},
-  gameLevel: {gameLevel},
-  country: {country},
-  city:  {city}
-}
 
 Example: GET /api/v1/game/gamers
-{
-  gameId: 1,
-  level: "PRO",
-  country: "Armenia"
-  country: "Yerevan"
-}
 ```
 
-* Search Gamers by Specific Level
+* Search Gamers by Specific Level per Game
 ```
-GET /api/v1/game/gamers/{gameId}/{gameLevel}"
+GET /api/v1/game/gamers/level}"
 
-Example: GET /api/v1/game/gamers/1/INVINCIBLE"
+Example: GET /api/v1/game/gamers/INVINCIBLE"
 ```
 
 ## Software Tests Run

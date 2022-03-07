@@ -1,12 +1,11 @@
 package com.hhovhann.gamemanagement.service;
 
-import com.hhovhann.gamemanagement.dto.LinkedGamerRequestDto;
-import com.hhovhann.gamemanagement.dto.LinkedGamerResponseDto;
-import com.hhovhann.gamemanagement.dto.SearchGamerRequestDto;
+import com.hhovhann.gamemanagement.dto.GameRequestDto;
+import com.hhovhann.gamemanagement.dto.GameResponseDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
 import com.hhovhann.gamemanagement.entity.Game;
 import com.hhovhann.gamemanagement.entity.Gamer;
-import com.hhovhann.gamemanagement.entity.data.GameLevel;
+import com.hhovhann.gamemanagement.entity.data.Level;
 import com.hhovhann.gamemanagement.exception.GameNotFoundException;
 import com.hhovhann.gamemanagement.mapper.GameMapper;
 import com.hhovhann.gamemanagement.mapper.GamerMapper;
@@ -15,7 +14,6 @@ import com.hhovhann.gamemanagement.repository.GamerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +32,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public LinkedGamerResponseDto linkGamerToGame(LinkedGamerRequestDto gamerRequestDto) {
+    public GameResponseDto linkGamerToGame(GameRequestDto gamerRequestDto) {
         // Find the game or throw game not found exception
         Game game = gameRepository.findById(gamerRequestDto.gameId).orElseThrow(() -> new GameNotFoundException("No game was found with specified Id"));
         // Find the gamer or throw gamer not found exception
@@ -48,7 +46,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public LinkedGamerResponseDto unLinkGamerFromGame(LinkedGamerRequestDto gamerRequestDto) {
+    public GameResponseDto unLinkGamerFromGame(GameRequestDto gamerRequestDto) {
         // 1. Find the game or throw game not found exception
         Game game = gameRepository.findById(gamerRequestDto.gameId).orElseThrow(() -> new GameNotFoundException("No game was found with specified Id"));
         // 2. Find Gamer by id or throw gamer not found exception
@@ -61,25 +59,24 @@ public class GameServiceImpl implements GameService {
         return gameMapper.toLinkedGamerDto(savedGame);
     }
 
-    @Override
-    public List<SearchGamerResponseDto> retrieveAllGamers(SearchGamerRequestDto searchGamerRequestDto) {
+    @Override // Search API based on level, game and geography for auto-matching gamers.
+    public List<SearchGamerResponseDto> retrieveAllGamers() {
         // Find the game or throw game not found exception
-        Game game = gameRepository.findByIdAndGameLevel(searchGamerRequestDto.gameId, searchGamerRequestDto.gameLevel).orElseThrow(() -> new GameNotFoundException("No game was found with specified Id and game level"));
+        List<Gamer> gamers = gamerRepository.findAll();
         // Return all gamers with specific game id, game level and geography
-        return game.getGamers()
+        return gamers
                 .stream()
-                .filter(gamer -> Objects.equals(gamer.getCountry(), searchGamerRequestDto.country) && Objects.equals(gamer.getCity(), searchGamerRequestDto.city))
-                .map(gamer -> gameMapper.toSearchDto(game))
+                .map(gamerMapper::toSearchDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<SearchGamerResponseDto> retrieveGamersOnSpecificLevel(Long gameId, String gameLevel) {
+    public List<SearchGamerResponseDto> retrieveGamersOnSpecificLevel(String gameLevel) {
         // Find the gamer throw games not found exception
-        Game game = gameRepository.findByIdAndGameLevel(gameId, GameLevel.valueOf(gameLevel))
-                .orElseThrow(() -> new GameNotFoundException("No game was found with specified Id and game level"));
+        List<Gamer> gamers = gamerRepository.findByLevel(Level.valueOf(gameLevel));
+
         // Return all gamers with specific game level per game
-        return game.getGamers().stream()
+        return gamers.stream()
                 .map(gamerMapper::toSearchDto)
                 .collect(Collectors.toList());
     }

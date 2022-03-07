@@ -1,24 +1,25 @@
 package com.hhovhann.gamemanagement.entity;
 
+import com.hhovhann.gamemanagement.entity.data.Level;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 
+import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @NoArgsConstructor
 public class Gamer implements Serializable {
 
-    public Gamer(Long id, String name, String email, String country, String city){
+    public Gamer(Long id, String name, Level level, String country, String city){
         this.id = id;
         this.name = name;
-        this.email = email;
+        this.level = level;
         this.country = country;
         this.city = city;
     }
@@ -34,9 +35,9 @@ public class Gamer implements Serializable {
     @NotBlank
     private String name;
 
-    @NotBlank
-    @Email
-    private String email;
+    @Enumerated(STRING)
+    @NotNull
+    private Level level;
 
     @NotBlank
     private String country;
@@ -65,12 +66,12 @@ public class Gamer implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public Level getLevel() {
+        return level;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     public String getCountry() {

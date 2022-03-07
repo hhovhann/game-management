@@ -2,7 +2,7 @@ package com.hhovhann.gamemanagement.dto;
 
 
 import com.hhovhann.gamemanagement.entity.Gamer;
-import com.hhovhann.gamemanagement.entity.data.GameLevel;
+import com.hhovhann.gamemanagement.entity.data.Level;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import static javax.persistence.EnumType.STRING;
 
 @Data
 @Builder
-public class LinkedGamerResponseDto {
+public class GameResponseDto {
 
     Long gameId;
 
@@ -22,7 +22,7 @@ public class LinkedGamerResponseDto {
     String gameName;
 
     @Enumerated(STRING)
-    GameLevel gameLevel;
+    Level level;
 
     List<Gamer> gamers;
 }

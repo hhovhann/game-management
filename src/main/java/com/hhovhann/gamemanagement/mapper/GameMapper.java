@@ -1,25 +1,17 @@
 package com.hhovhann.gamemanagement.mapper;
 
-import com.hhovhann.gamemanagement.dto.LinkedGamerResponseDto;
-import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
+import com.hhovhann.gamemanagement.dto.GameResponseDto;
 import com.hhovhann.gamemanagement.entity.Game;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GameMapper {
 
-    public SearchGamerResponseDto toSearchDto(Game game) {
-        return SearchGamerResponseDto.builder()
-                .gameId(game.getId())
-                .gameLevel(game.getGameLevel())
-                .build();
-    }
-
-    public LinkedGamerResponseDto toLinkedGamerDto(Game game) {
-        return LinkedGamerResponseDto
+    public GameResponseDto toLinkedGamerDto(Game game) {
+        return GameResponseDto
                 .builder()
                 .gameId(game.getId())
-                .gameLevel(game.getGameLevel())
+                .gameName(game.getName())
                 .gamers(game.getGamers())
                 .build();
     }
