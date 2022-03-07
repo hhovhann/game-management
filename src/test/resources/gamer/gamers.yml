@@ -1,0 +1,18 @@
+gamers:
+  - id: 1
+    name: "Hayk Hovhannisyan"
+    country: "Armenia"
+    city: "Yerevan"
+  - id: 2
+    name: "Ronaldo"
+    country: "Brasil"
+    city: "Sao Paulo"
+game:
+  - id: 1
+    name: "FIFA 22"
+    level: "PRO"
+    gamer_id: 1
+  - id: 2
+    name: "SHAPE SHIFTING"
+    level: "N00B"
+    gamer_id: 1

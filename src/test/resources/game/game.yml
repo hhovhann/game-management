@@ -1,0 +1,10 @@
+gamers:
+  - id: 1
+    name: "Hayk Hovhannisyan"
+    country: "Armenia"
+    city: "Yerevan"
+game:
+  - id: 1
+    name: "FIFA 22"
+    level: "PRO"
+    gamer_id: 1

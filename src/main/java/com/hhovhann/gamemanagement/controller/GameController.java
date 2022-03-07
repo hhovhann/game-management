@@ -1,14 +1,18 @@
 package com.hhovhann.gamemanagement.controller;
 
-import com.hhovhann.gamemanagement.dto.CreateGamerRequestDto;
-import com.hhovhann.gamemanagement.dto.CreateGamerResponseDto;
+import com.hhovhann.gamemanagement.dto.LinkedGamerRequestDto;
+import com.hhovhann.gamemanagement.dto.LinkedGamerResponseDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerRequestDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
 import com.hhovhann.gamemanagement.service.GameService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
+
+import java.util.List;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController("api/v1/game")
 public class GameController {
@@ -18,27 +22,31 @@ public class GameController {
         this.gameService = gameService;
     }
 
+    @ResponseBody
     @PostMapping("/gamers")
-    public ResponseEntity<CreateGamerResponseDto> linkToGame(@Valid CreateGamerRequestDto gamerRequestDto) {
-        // 1. API to link gamer to a game
-        return ResponseEntity.ok(gameService.linkToGame(gamerRequestDto));
+    @ApiResponse(description = "API to link gamer to a game")
+    public ResponseEntity<LinkedGamerResponseDto> linkToGame(@Valid LinkedGamerRequestDto gamerRequestDto) {
+        return ResponseEntity.ok(gameService.linkGamerToGame(gamerRequestDto));
     }
 
-    @DeleteMapping("/gamers")
-    public ResponseEntity<CreateGamerResponseDto> unlinkFromGame(@Valid CreateGamerRequestDto gamerRequestDto) {
-        // 2. API to unlink gamer from a game
-        return ResponseEntity.ok(gameService.unLinkFromGame(gamerRequestDto));
+    @ResponseBody
+    @DeleteMapping(value = "/gamers", produces = APPLICATION_JSON_VALUE)
+    @ApiResponse(description = "API to unlink gamer from a game")
+    public ResponseEntity<LinkedGamerResponseDto> unlinkFromGame(@Valid LinkedGamerRequestDto gamerRequestDto) {
+        return ResponseEntity.ok(gameService.unLinkGamerFromGame(gamerRequestDto));
     }
 
-    @GetMapping("/gamers")
-    public ResponseEntity<SearchGamerResponseDto> searchGamers(@Valid SearchGamerRequestDto searchGamerRequestDto) {
-        // 3. Search API based on level, game and geography for auto-matching gamers.
-        return ResponseEntity.ok(gameService.retrieveGamersByLevelAndGameAngGeography(searchGamerRequestDto));
+    @ResponseBody
+    @GetMapping(value = "/gamers", produces = APPLICATION_JSON_VALUE)
+    @ApiResponse(description = "API based on level, game and geography for auto-matching gamers.")
+    public ResponseEntity<List<SearchGamerResponseDto>> searchGamers(@Valid SearchGamerRequestDto searchGamerRequestDto) {
+        return ResponseEntity.ok(gameService.retrieveAllGamers(searchGamerRequestDto));
     }
 
-    @GetMapping("/gamers/{gameLevel}")
-    public ResponseEntity<SearchGamerResponseDto> searchGamersByLevel(@Valid @PathVariable String gameLevel) {
-        // 4. API to get the gamers on a specific level(eg. INVINCIBLE) per game
-        return ResponseEntity.ok(gameService.retrieveGamersOnSpecificLevel(gameLevel));
+    @ResponseBody
+    @GetMapping(value = "/gamers/{gameId}/{gameLevel}", produces = APPLICATION_JSON_VALUE)
+    @ApiResponse(description = "API to get the gamers on a specific level(eg. INVINCIBLE) per game")
+    public ResponseEntity<List<SearchGamerResponseDto>> searchGamersByLevel(@PathVariable Long gameId, @PathVariable String gameLevel) {
+        return ResponseEntity.ok(gameService.retrieveGamersOnSpecificLevel(gameId, gameLevel));
     }
 }

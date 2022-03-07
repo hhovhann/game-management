@@ -14,14 +14,11 @@ import static javax.persistence.EnumType.STRING;
 @Validated
 public class SearchGamerRequestDto {
     @NotBlank
-    private Long gameId;
-
-    @NotBlank
-    private Long getGamerId;
+    public Long gameId;
 
     @Enumerated(STRING)
-    private GameLevel gameLevel;
+    public GameLevel gameLevel;
 
     @NotNull
-    private Geography geography;
+    public Geography geography;
 }

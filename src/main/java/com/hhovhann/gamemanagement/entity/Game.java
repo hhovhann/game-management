@@ -1,15 +1,21 @@
 package com.hhovhann.gamemanagement.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hhovhann.gamemanagement.entity.data.GameLevel;
 
-import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -30,8 +36,7 @@ public class Game implements Serializable {
     @NotNull
     private GameLevel gameLevel;
 
-    @OneToMany(mappedBy = "gamer", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonIgnore
+    @OneToMany(mappedBy = "gamer", cascade = { PERSIST, MERGE})
     private List<Gamer> gamers = new ArrayList<>();
 
 
@@ -75,5 +80,17 @@ public class Game implements Serializable {
     public void removeGamer(Gamer gamer) {
         gamers.remove(gamer);
         gamer.setGame(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Game)) return false;
+        return id != null && id.equals(((Game) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

@@ -19,11 +19,19 @@ Game Management Demo project for Spring Boot
 
 ## Software Behaviour
 System designed as a Spring Boot Web Application. Provides Rest API with following endpoints:
+
 * Link Gamer to Game
 ```
 POST /api/v1/game/gamers
 {
- ....
+    gameId: {gameId}
+    gamerId: {gamerId}
+}
+
+Example: POST /api/v1/game/gamers
+{
+    gameId: 1
+    gamerId: 1
 }
 ```
 
@@ -31,21 +39,43 @@ POST /api/v1/game/gamers
 ```
 DELETE /api/v1/game/gamers
 {
- ....
+    gameId: {gameId}
+    gamerId: {gamerId}
+}
+
+Example: DELETE /api/v1/game/gamers
+{
+    gameId: 1
+    gamerId: 1
 }
 ```
 
-* Search Gamers by Level, Game, Geography, 
+* Search Gamers by Game Level, Game, Geography 
 ```
 GET /api/v1/game/gamers
 {
- ....
+  gameId: {gameId},
+  gameLevel: {gameLevel},
+  geography: {
+    country: {country},
+    city:  {city}
+  }
+}
+
+Example: GET /api/v1/game/gamers
+{
+  gameId: 1,
+  level: "PRO",
+  country: "Armenia"
+  country: "Yerevan"
 }
 ```
 
 * Search Gamers by Specific Level
 ```
-GET /api/v1/game/gamers/{game_level}
+GET /api/v1/game/gamers/{gameId}/{gameLevel}"
+
+Example: GET /api/v1/game/gamers/1/INVINCIBLE"
 ```
 
 ## Software Tests Run

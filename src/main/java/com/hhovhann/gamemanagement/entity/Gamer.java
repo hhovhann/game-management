@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
@@ -28,11 +29,15 @@ public class Gamer implements Serializable {
     @NotBlank
     private String name;
 
+    @NotBlank
+    @Email
+    private String email;
+
     @Embedded
     @NotNull
     private Geography geography;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id", foreignKey = @ForeignKey(name = "fk_gamer_game_id"))
     private Game game;
 
@@ -51,6 +56,14 @@ public class Gamer implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Geography getGeography() {
