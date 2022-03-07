@@ -50,18 +50,48 @@ Example: DELETE /api/v1/game/gamers
 }
 ```
 
-* Search all Gamers
-```
-GET /api/v1/game/gamers
+* Search all Gamers: `GET /api/v1/game/gamers`
 
-Example: GET /api/v1/game/gamers
+`RESPONSE BODY `
+```
+[
+  {
+    "gameId": null,
+    "gameName": null,
+    "level": "PRO",
+    "country": "Armenia",
+    "city": "Yerevan"
+  },
+  {
+    "gameId": null,
+    "gameName": null,
+    "level": "INVINCIBLE",
+    "country": "Armenia",
+    "city": "Yerevan"
+  }
+]
 ```
 
-* Search Gamers by Specific Level per Game
-```
-GET /api/v1/game/gamers/level}"
+* Search Gamers by Specific Level per Game: `GET /api/v1/game/gamers/INVINCIBLE`
 
-Example: GET /api/v1/game/gamers/INVINCIBLE"
+`RESPONSE BODY `
+```
+[
+  {
+    "gameId": null,
+    "gameName": null,
+    "level": "INVINCIBLE",
+    "country": "Armenia",
+    "city": "Yerevan"
+  },
+  {
+    "gameId": null,
+    "gameName": null,
+    "level": "INVINCIBLE",
+    "country": "Armenia",
+    "city": "Yerevan"
+  }
+]
 ```
 
 ## Software Tests Run

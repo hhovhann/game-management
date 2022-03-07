@@ -59,7 +59,7 @@ public class GameServiceImpl implements GameService {
         return gameMapper.toLinkedGamerDto(savedGame);
     }
 
-    @Override // Search API based on level, game and geography for auto-matching gamers.
+    @Override
     public List<SearchGamerResponseDto> retrieveAllGamers() {
         // Find the game or throw game not found exception
         List<Gamer> gamers = gamerRepository.findAll();
@@ -72,9 +72,8 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<SearchGamerResponseDto> retrieveGamersOnSpecificLevel(String gameLevel) {
-        // Find the gamer throw games not found exception
+        // Find all gamers by specific level
         List<Gamer> gamers = gamerRepository.findByLevel(Level.valueOf(gameLevel));
-
         // Return all gamers with specific game level per game
         return gamers.stream()
                 .map(gamerMapper::toSearchDto)

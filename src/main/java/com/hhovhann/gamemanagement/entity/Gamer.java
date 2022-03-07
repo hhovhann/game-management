@@ -2,7 +2,6 @@ package com.hhovhann.gamemanagement.entity;
 
 import com.hhovhann.gamemanagement.entity.data.Level;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,16 +15,16 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @NoArgsConstructor
 public class Gamer implements Serializable {
 
-    public Gamer(Long id, String name, Level level, String country, String city){
+    @Serial
+    private static final long serialVersionUID = -7254728412209071436L;
+
+    public Gamer(Long id, String name, Level level, String country, String city) {
         this.id = id;
         this.name = name;
         this.level = level;
         this.country = country;
         this.city = city;
     }
-
-    @Serial
-    private static final long serialVersionUID = -7254728412209071436L;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "gamer_seq")
