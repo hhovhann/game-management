@@ -135,5 +135,4 @@ DELETE /api/v1/game/gamers
 - Run the application from the IDEA itself
 
 # Nice to have
-* More manual testing
-* More unit and integration test scenarios
+* More scenarios for unit and integration tests 
