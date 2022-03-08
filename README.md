@@ -11,6 +11,10 @@ Game Management Demo project for Spring Boot
 * DbRider Spring 1.32.2
 
 ## Software Design
+
+* The project is create by using power of Spring Boot (Dependency Injection (IoC) as weel following some SOLID principles
+* For Software Design, Rest API design, Database Design tried to followed the best practises
+* For database data preparation mostly used the power from DbRider for Controller Integration and Repository tests
 * There are two entities: Game (id, name, level) and Gamer with fields (id, name, Geography (city, country)).
 * There is a OneToMany relations: (Game could have many Gamers: i.e. many gamers could be linked to many games)
 
