@@ -47,13 +47,13 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameResponseDto unLinkGamerFromGame(GameRequestDto gamerRequestDto) {
-        // 1. Find the game or throw game not found exception
+        // Find the game or throw game not found exception
         Game game = gameRepository.findById(gamerRequestDto.gameId).orElseThrow(() -> new GameNotFoundException("No game was found with specified Id"));
-        // 2. Find Gamer by id or throw gamer not found exception
+        // Find Gamer by id or throw gamer not found exception
         Gamer gamer = gamerRepository.findById(gamerRequestDto.gamerId).orElseThrow(() -> new GameNotFoundException("No gamer was found with specified Id"));
-        // 3.  Remove/UnLink/Detach gamer from the existing game
+        // Remove/UnLink/Detach gamer from the existing game
         game.removeGamer(gamer);
-        // 4. Save the game
+        // Save the game
         Game savedGame = gameRepository.save(game);
 
         return gameMapper.toLinkedGamerDto(savedGame);

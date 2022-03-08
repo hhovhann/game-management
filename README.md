@@ -101,3 +101,7 @@ Example: DELETE /api/v1/game/gamers
 ## Software Run
 - Run application with bach command from project root `./scripts/run.sh`
 - Run the application from the IDEA itself
+
+# Nice to have
+* More manual testing
+* More unit and integration test scenarios
