@@ -4,7 +4,7 @@ gamer:
     country: "Armenia"
     city: "Yerevan"
     level: "PRO"
-    game_id: 1
+    game_id: 2
   - id: 2
     name: "Ronaldo"
     country: "Brasil"
@@ -16,7 +16,7 @@ gamer:
     country: "Brasil"
     city: "Sao Paulo"
     level: "PRO"
-    game_id: 3
+    game_id: 2
 game:
   - id: 1
     name: "FIFA22"

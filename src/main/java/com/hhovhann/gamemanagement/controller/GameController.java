@@ -17,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Validated
 @Tag(name = "Game Endpoints")
-@RestController("api/v1/game")
+@RestController
 public class GameController {
     private final GameService gameService;
 
@@ -26,25 +26,25 @@ public class GameController {
     }
 
     @ResponseBody
-    @PostMapping(value = "/gamers", produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "api/v1/game/gamers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<GameResponseDto> linkToGame(@RequestBody @Valid GameRequestDto gamerRequestDto) {
         return ResponseEntity.ok(gameService.linkGamerToGame(gamerRequestDto));
     }
 
     @ResponseBody
-    @DeleteMapping(value = "/gamers", produces = APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "api/v1/game/gamers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<GameResponseDto> unlinkFromGame(@RequestBody @Valid GameRequestDto gamerRequestDto) {
         return ResponseEntity.ok(gameService.unLinkGamerFromGame(gamerRequestDto));
     }
 
     @ResponseBody
-    @GetMapping(value = "/gamers", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "api/v1/game/gamers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SearchGamerResponseDto>> searchGamers() {
         return ResponseEntity.ok(gameService.retrieveAllGamers());
     }
 
     @ResponseBody
-    @GetMapping(value = "/gamers/{gameLevel}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "api/v1/game/gamers/{gameLevel}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SearchGamerResponseDto>> searchGamersByLevel(@PathVariable @NotBlank String gameLevel) {
         return ResponseEntity.ok(gameService.retrieveGamersOnSpecificLevel(gameLevel));
     }

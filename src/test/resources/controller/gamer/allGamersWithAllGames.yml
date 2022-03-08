@@ -9,13 +9,13 @@ gamer:
     name: "Ronaldo"
     country: "Brasil"
     city: "Sao Paulo"
-    level: "PRO"
+    level: "INVINCIBLE"
     game_id: 2
   - id: 3
     name: "Bebetto"
     country: "Brasil"
     city: "Sao Paulo"
-    level: "PRO"
+    level: "INVINCIBLE"
     game_id: 3
 game:
   - id: 1
