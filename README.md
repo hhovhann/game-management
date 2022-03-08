@@ -21,32 +21,50 @@ Game Management Demo project for Spring Boot
 System designed as a Spring Boot Web Application. Provides Rest API with following endpoints:
 
 * Link Gamer to Game
+
+`REQUEST BODY`
 ```
 POST /api/v1/game/gamers
 {
-    gameId: {gameId}
-    gamerId: {gamerId}
-}
-
-Example: POST /api/v1/game/gamers
-{
     gameId: 1
     gamerId: 1
+}
+```
+
+`RESPONSE BODY`
+```
+{
+  "gameId": 1,
+  "gameName": "FIFA22",
+  "gamers": [
+    {
+      "id": 1,
+      "name": "Hayk Hovhannisyan 1",
+      "level": "PRO",
+      "country": "Armenia",
+      "city": "Yerevan"
+    }
+  ]
 }
 ```
 
 * UnLink Gamer from Game
+
+`REQUEST BODY`
 ```
 DELETE /api/v1/game/gamers
 {
-    gameId: {gameId}
-    gamerId: {gamerId}
-}
-
-Example: DELETE /api/v1/game/gamers
-{
     gameId: 1
     gamerId: 1
+}
+```
+
+`RESPONSE BODY`
+```
+{
+  "gameId": 1,
+  "gameName": "FIFA22",
+  "gamers": []
 }
 ```
 
@@ -56,9 +74,16 @@ Example: DELETE /api/v1/game/gamers
 ```
 [
   {
+    "gameId": 1,
+    "gameName": "FIFA22",
+    "level": "PRO",
+    "country": "Armenia",
+    "city": "Yerevan"
+  },
+  {
     "gameId": null,
     "gameName": null,
-    "level": "PRO",
+    "level": "INVINCIBLE",
     "country": "Armenia",
     "city": "Yerevan"
   },
@@ -78,16 +103,23 @@ Example: DELETE /api/v1/game/gamers
 ```
 [
   {
-    "gameId": null,
-    "gameName": null,
-    "level": "INVINCIBLE",
+    "gameId": 1,
+    "gameName": "FIFA22",
+    "level": "PRO",
     "country": "Armenia",
     "city": "Yerevan"
   },
   {
     "gameId": null,
     "gameName": null,
-    "level": "INVINCIBLE",
+    "level": "PRO",
+    "country": "Armenia",
+    "city": "Yerevan"
+  },
+  {
+    "gameId": null,
+    "gameName": null,
+    "level": "PRO",
     "country": "Armenia",
     "city": "Yerevan"
   }

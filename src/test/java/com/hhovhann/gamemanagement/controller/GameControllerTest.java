@@ -4,6 +4,7 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.spring.api.DBRider;
 import com.hhovhann.gamemanagement.dto.GameRequestDto;
 import com.hhovhann.gamemanagement.dto.GameResponseDto;
+import com.hhovhann.gamemanagement.dto.GamerDto;
 import com.hhovhann.gamemanagement.entity.Game;
 import com.hhovhann.gamemanagement.entity.Gamer;
 import com.hhovhann.gamemanagement.entity.data.Level;
@@ -56,7 +57,7 @@ public class GameControllerTest {
         this.mortalCombat11Game = new Game(3L, "MORTAL COMBAT 11", Collections.singletonList(new Gamer(2L, "Hayk Hovhannisyan 1", Level.PRO, "Armenia", "Yerevan")));
 
         this.gameRequestDto = new GameRequestDto(1L, 1L);
-        this.gameResponseDto = new GameResponseDto(1L, "FIFA22", Collections.singletonList(new Gamer(1L, "Hayk Hovhannisyan 1", Level.PRO, "Armenia", "Yerevan")));
+        this.gameResponseDto = new GameResponseDto(1L, "FIFA22", Collections.singletonList(new GamerDto(1L, "Hayk Hovhannisyan 1", Level.PRO, "Armenia", "Yerevan")));
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.hhovhann.gamemanagement.service;
 
 import com.hhovhann.gamemanagement.dto.GameRequestDto;
 import com.hhovhann.gamemanagement.dto.GameResponseDto;
+import com.hhovhann.gamemanagement.dto.GamerDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
 import com.hhovhann.gamemanagement.entity.Game;
 import com.hhovhann.gamemanagement.entity.Gamer;
@@ -58,23 +59,23 @@ public class GameServiceTest {
         }});
 
         // Takken7 game and gamers
-        this.taken7FirstGamer = new Gamer(3L, "Hayk Hovhannisyan 3", PRO, "Armenia", "Yerevan");
-        this.taken7SecondGamer = new Gamer(4L, "Hayk Hovhannisyan 4", PRO, "Armenia", "Yerevan");
+        this.taken7FirstGamer = new Gamer(4L, "Hayk Hovhannisyan 3", PRO, "Armenia", "Yerevan");
+        this.taken7SecondGamer = new Gamer(5L, "Hayk Hovhannisyan 4", PRO, "Armenia", "Yerevan");
         this.taken7Game = new Game(2L, "TAKKEN7", new ArrayList<>() {{
             add(taken7FirstGamer);
             add(taken7SecondGamer);
         }});
 
         // MortalCombat11 game and gamers
-        this.mortalCombat11FirstGamer = new Gamer(5L, "Hayk Hovhannisyan 5", N00B, "Armenia", "Yerevan");
-        this.mortalCombat11SecondGamer = new Gamer(6L, "Hayk Hovhannisyan 6", N00B, "Armenia", "Yerevan");
+        this.mortalCombat11FirstGamer = new Gamer(6L, "Hayk Hovhannisyan 5", N00B, "Armenia", "Yerevan");
+        this.mortalCombat11SecondGamer = new Gamer(7L, "Hayk Hovhannisyan 6", N00B, "Armenia", "Yerevan");
         this.mortalCombat11Game = new Game(3L, "MORTAL COMBAT 11", new ArrayList<>() {{
             add(mortalCombat11FirstGamer);
             add(mortalCombat11SecondGamer);
         }});
 
         this.gameRequestDto = new GameRequestDto(1L, 1L);
-        this.gameResponseDto = new GameResponseDto(1L, fifa22Game.getName(), Arrays.asList(this.fifa22FirstGamer));
+        this.gameResponseDto = new GameResponseDto(1L, fifa22Game.getName(), Arrays.asList(new GamerDto(3L, "Hayk Hovhannisyan Dto", PRO, "Armenia", "Yerevan")));
     }
 
     @Test

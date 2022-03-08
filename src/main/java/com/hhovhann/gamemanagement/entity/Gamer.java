@@ -43,7 +43,7 @@ public class Gamer implements Serializable {
     @NotBlank
     private String city;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "game_id", foreignKey = @ForeignKey(name = "fk_gamer_game_id"))
     private Game game;
 
