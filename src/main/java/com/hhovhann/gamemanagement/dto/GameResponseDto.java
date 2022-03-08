@@ -3,6 +3,7 @@ package com.hhovhann.gamemanagement.dto;
 
 import com.hhovhann.gamemanagement.entity.Gamer;
 import com.hhovhann.gamemanagement.entity.data.Level;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ import static javax.persistence.EnumType.STRING;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class GameResponseDto {
 
     Long gameId;

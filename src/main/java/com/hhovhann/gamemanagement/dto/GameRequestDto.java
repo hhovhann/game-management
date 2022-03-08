@@ -1,11 +1,13 @@
 package com.hhovhann.gamemanagement.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Data
+@AllArgsConstructor
 public class GameRequestDto {
     @NotNull(message = "Game Id cannot be null")
     @Positive(message = "Game Id should be positive")

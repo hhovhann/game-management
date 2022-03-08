@@ -2,7 +2,7 @@ package com.hhovhann.gamemanagement.repository;
 
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
-import com.github.database.rider.spring.api.DBRider;
+import com.github.database.rider.junit5.api.DBRider;
 import com.hhovhann.gamemanagement.entity.Game;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DBRider
 @SpringBootTest
-class GameRepositoryTest {
+public class GameRepositoryTest {
 
     @Autowired
     private GameRepository gameRepository;
