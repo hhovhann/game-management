@@ -1,15 +1,12 @@
 package com.hhovhann.gamemanagement.exception;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.io.Serial;
-
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @ResponseStatus(NOT_FOUND)
 public class GamerNotFoundException extends RuntimeException {
-    @Serial
+
     private static final long serialVersionUID = 4905312929038408201L;
 
     public GamerNotFoundException() {

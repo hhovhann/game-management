@@ -3,12 +3,12 @@ Game Management Demo project for Spring Boot
 
 # Software Document
 
-## Software Environment
-
+## Software Technical Stack
 * Spring Boot 2.6.4
 * Java 17 2021-09-14 LTS
 * Maven 3.8.2
 * OpenAPI UI 1.6.6
+* DbRider Spring 1.32.2
 
 ## Software Design
 * There are two entities: Game (id, name, level) and Gamer with fields (id, name, Geography (city, country)).

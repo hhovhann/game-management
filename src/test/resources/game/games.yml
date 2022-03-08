@@ -5,18 +5,6 @@ gamer:
     city: "Yerevan"
     level: "PRO"
     game_id: 1
-  - id: 2
-    name: "Ronaldo"
-    country: "Brasil"
-    city: "Sao Paulo"
-    level: "PRO"
-    game_id: 2
-  - id: 3
-    name: "Bebetto"
-    country: "Brasil"
-    city: "Sao Paulo"
-    level: "PRO"
-    game_id: 3
 game:
   - id: 1
     name: "FIFA22"
