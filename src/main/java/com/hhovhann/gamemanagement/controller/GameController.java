@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -41,6 +43,12 @@ public class GameController {
     @GetMapping(value = "api/v1/game/gamers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SearchGamerResponseDto>> searchGamers() {
         return ResponseEntity.ok(gameService.retrieveAllGamers());
+    }
+
+    @ResponseBody
+    @GetMapping(value = "api/v1/game/gamers/{gameLevel}/{gameId}", produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<SearchGamerResponseDto>> searchGamersByLevelAndGame(@PathVariable @NotBlank String gameLevel, @PathVariable @NotNull @Positive Long gameId) {
+        return ResponseEntity.ok(gameService.retrieveGamersOnSpecificLevelAndSpecificGame(gameLevel, gameId));
     }
 
     @ResponseBody

@@ -23,7 +23,12 @@ public interface GameService {
     List<SearchGamerResponseDto> retrieveAllGamers();
 
     /***
-     * API to get the gamers on a specific level(eg. INVINCIBLE) per game business logic here
+     * API to get the gamers on a specific level(ex. INVINCIBLE) per game business logic here
      */
     List<SearchGamerResponseDto> retrieveGamersOnSpecificLevel(String gameLevel);
+
+    /***
+     * API to get the gamers on a specific level(ex. INVINCIBLE) and specific game(ex. 1L - FIFA22)
+     */
+    List<SearchGamerResponseDto> retrieveGamersOnSpecificLevelAndSpecificGame(String gameLevel, Long gameId);
 }

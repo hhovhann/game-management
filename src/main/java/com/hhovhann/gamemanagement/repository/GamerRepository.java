@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface GamerRepository extends JpaRepository<Gamer, Long> {
     List<Gamer> findByLevel(Level level);
+
+    List<Gamer> findByLevelAndGame_id(Level level, Long gameId);
 }

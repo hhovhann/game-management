@@ -138,4 +138,19 @@ public class GameServiceTest {
         // then
         Assertions.assertThat(searchGamerResponseDtos.size()).isEqualTo(2);
     }
+
+
+    @Test
+    @DisplayName("Return all gamers by specific level and specific game")
+    public void whenRetrieveGamersBySpecificLevel_thenReturnAllGamersBySpecificLevelAndSpecificGame() throws Exception {
+        // given
+        when(gamerRepository.findByLevelAndGame_id(N00B, 1L))
+                .thenReturn(List.of(this.mortalCombat11FirstGamer, this.mortalCombat11SecondGamer));
+
+        // when
+        List<SearchGamerResponseDto> searchGamerResponseDtos = gameService.retrieveGamersOnSpecificLevelAndSpecificGame(String.valueOf(N00B), 1L);
+
+        // then
+        Assertions.assertThat(searchGamerResponseDtos.size()).isEqualTo(2);
+    }
 }

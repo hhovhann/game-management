@@ -119,4 +119,17 @@ public class GameControllerTest {
                 .andExpect(jsonPath("$.[0].gameName", is("FIFA22")))
                 .andExpect(jsonPath("$.[0].gameId", is(1L), Long.class));
     }
+
+    @Test
+    @DataSet(cleanBefore = true, value = {"controller/gamer/allGamersWithAllGames.yml"})
+    @DisplayName("Return all gamers with specific level and specific game")
+    public void givenGameLevelAndGameId_whenGetAllGamers_thenReturnJsonArray() throws Exception {
+        mockMvc.perform(get("/api/v1/game/gamers/INVINCIBLE/2"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
+
+                .andExpect(jsonPath("$.[0].gameName", is("TAKKEN7")))
+                .andExpect(jsonPath("$.[0].gameId", is(2L), Long.class));
+    }
 }

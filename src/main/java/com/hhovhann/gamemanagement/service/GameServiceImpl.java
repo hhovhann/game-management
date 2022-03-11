@@ -71,6 +71,16 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public List<SearchGamerResponseDto> retrieveGamersOnSpecificLevelAndSpecificGame(String gameLevel, Long gameId) {
+        // Find the gamer throw games not found exception
+        List<Gamer> gamers = gamerRepository.findByLevelAndGame_id(Level.valueOf(gameLevel), gameId);
+        // Return all gamers with specific game level per game
+        return gamers.stream()
+                .map(gamerMapper::toSearchDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<SearchGamerResponseDto> retrieveGamersOnSpecificLevel(String gameLevel) {
         // Find the gamer throw games not found exception
         List<Gamer> gamers = gamerRepository.findByLevel(Level.valueOf(gameLevel));

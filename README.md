@@ -130,6 +130,21 @@ DELETE /api/v1/game/gamers
 ]
 ```
 
+* Search Gamers by Specific Level and Specific Game: `GET /api/v1/game/gamers/PRO/1`
+
+`RESPONSE BODY `
+```
+[
+  {
+    "gameId": 1,
+    "gameName": "FIFA22",
+    "level": "PRO",
+    "country": "Armenia",
+    "city": "Yerevan"
+  }
+]
+```
+
 ## Software Tests Run
 - Run application with bach command from project root `./scripts/run-tests.sh`
 - Run the application from the IDEA itself
