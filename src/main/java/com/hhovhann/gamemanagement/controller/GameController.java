@@ -2,6 +2,7 @@ package com.hhovhann.gamemanagement.controller;
 
 import com.hhovhann.gamemanagement.dto.GameRequestDto;
 import com.hhovhann.gamemanagement.dto.GameResponseDto;
+import com.hhovhann.gamemanagement.dto.SearchGamerRequestDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
 import com.hhovhann.gamemanagement.service.GameService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -43,6 +44,12 @@ public class GameController {
     @GetMapping(value = "api/v1/game/gamers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SearchGamerResponseDto>> searchGamers() {
         return ResponseEntity.ok(gameService.retrieveAllGamers());
+    }
+
+    @ResponseBody
+    @PostMapping(value = "api/v1/games/gamers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<SearchGamerResponseDto>> searchGamersByLevelAndGameAndGeography(@RequestBody @Valid SearchGamerRequestDto searchGamerRequestDto) {
+        return ResponseEntity.ok(gameService.retrieveGamersOnSpecificGameAndSpecificLevelAndGeography(searchGamerRequestDto));
     }
 
     @ResponseBody

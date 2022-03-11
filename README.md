@@ -101,6 +101,19 @@ DELETE /api/v1/game/gamers
 ]
 ```
 
+* Search API based on level, game and geography for auto-matching gamers.
+
+`REQUEST BODY`
+```
+POST /api/v1/games/gamers
+{
+    gameId: 1,
+    level: "PRO",
+    country: "Armenia",
+    city: "Yerevan"
+}
+```
+
 * Search Gamers by Specific Level per Game: `GET /api/v1/game/gamers/INVINCIBLE`
 
 `RESPONSE BODY `

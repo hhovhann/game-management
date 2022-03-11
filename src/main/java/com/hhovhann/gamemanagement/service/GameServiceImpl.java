@@ -2,6 +2,7 @@ package com.hhovhann.gamemanagement.service;
 
 import com.hhovhann.gamemanagement.dto.GameRequestDto;
 import com.hhovhann.gamemanagement.dto.GameResponseDto;
+import com.hhovhann.gamemanagement.dto.SearchGamerRequestDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
 import com.hhovhann.gamemanagement.entity.Game;
 import com.hhovhann.gamemanagement.entity.Gamer;
@@ -63,6 +64,18 @@ public class GameServiceImpl implements GameService {
     public List<SearchGamerResponseDto> retrieveAllGamers() {
         // Find the game or throw game not found exception
         List<Gamer> gamers = gamerRepository.findAll();
+        // Return all gamers with specific game id, game level and geography
+        return gamers
+                .stream()
+                .map(gamerMapper::toSearchDto)
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<SearchGamerResponseDto> retrieveGamersOnSpecificGameAndSpecificLevelAndGeography(SearchGamerRequestDto searchGamerRequestDto) {
+        // Find the game or throw game not found exception
+        List<Gamer> gamers = gamerRepository.findByGame_idAndLevelAndCountryAndCity(searchGamerRequestDto.getGameId(), Level.valueOf(searchGamerRequestDto.getLevel()), searchGamerRequestDto.getCountry(), searchGamerRequestDto.getCity());
         // Return all gamers with specific game id, game level and geography
         return gamers
                 .stream()

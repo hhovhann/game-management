@@ -2,6 +2,7 @@ package com.hhovhann.gamemanagement.service;
 
 import com.hhovhann.gamemanagement.dto.GameRequestDto;
 import com.hhovhann.gamemanagement.dto.GameResponseDto;
+import com.hhovhann.gamemanagement.dto.SearchGamerRequestDto;
 import com.hhovhann.gamemanagement.dto.SearchGamerResponseDto;
 
 import java.util.List;
@@ -31,4 +32,9 @@ public interface GameService {
      * API to get the gamers on a specific level(ex. INVINCIBLE) and specific game(ex. 1L - FIFA22)
      */
     List<SearchGamerResponseDto> retrieveGamersOnSpecificLevelAndSpecificGame(String gameLevel, Long gameId);
+
+    /***
+     * API to get the gamers on a specific level(ex. INVINCIBLE) and specific game(ex. 1L - FIFA22)
+     */
+    List<SearchGamerResponseDto> retrieveGamersOnSpecificGameAndSpecificLevelAndGeography(SearchGamerRequestDto searchGamerRequestDto);
 }

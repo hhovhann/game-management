@@ -46,4 +46,19 @@ class GamerRepositoryTest {
         Assertions.assertThat(gamers.get(0).getGame().getId()).isEqualTo(3L);
         Assertions.assertThat(gamers.get(0).getGame().getName()).isEqualTo("MORTAL COMBAT11");
     }
+
+    @Test
+    @DataSet(cleanBefore = true, value = {"gamer/gamers.yml"})
+    @DisplayName("Should find gamers by specific level and game and country and city")
+    public void shouldFindGamersByGameIdAndLevelAndCountryAndCity() {
+        assertThat(gamerRepository).isNotNull();
+        assertThat(gamerRepository.count()).isEqualTo(3);
+        List<Gamer> gamers = gamerRepository.findByGame_idAndLevelAndCountryAndCity(1L, Level.PRO, "Armenia", "Yerevan");
+
+        Assertions.assertThat(gamers.size()).isEqualTo(1);
+        Assertions.assertThat(gamers.get(0).getId()).isEqualTo(1L);
+        Assertions.assertThat(gamers.get(0).getName()).isEqualTo("Hayk Hovhannisyan");
+        Assertions.assertThat(gamers.get(0).getGame().getId()).isEqualTo(1L);
+        Assertions.assertThat(gamers.get(0).getGame().getName()).isEqualTo("FIFA22");
+    }
 }

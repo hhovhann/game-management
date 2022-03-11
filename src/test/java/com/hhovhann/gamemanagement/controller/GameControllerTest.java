@@ -6,6 +6,7 @@ import com.github.database.rider.spring.api.DBRider;
 import com.hhovhann.gamemanagement.dto.GameRequestDto;
 import com.hhovhann.gamemanagement.dto.GameResponseDto;
 import com.hhovhann.gamemanagement.dto.GamerDto;
+import com.hhovhann.gamemanagement.dto.SearchGamerRequestDto;
 import com.hhovhann.gamemanagement.repository.GameRepository;
 import com.hhovhann.gamemanagement.service.GameService;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,6 +43,7 @@ public class GameControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+    private SearchGamerRequestDto searchGamerRequestDto;
     private GameRequestDto gameLinkedRequestDto;
     private GameRequestDto gameUnLinkedRequestDto;
     private GameResponseDto gameLinkedResponseDto;
@@ -50,6 +52,7 @@ public class GameControllerTest {
     @BeforeEach
     public void setup() {
         this.gameLinkedRequestDto = new GameRequestDto(1L, 1L);
+        this.searchGamerRequestDto = new SearchGamerRequestDto(1L, "PRO", "Armenia", "Yerevan");
         this.gameLinkedResponseDto = new GameResponseDto(1L, "FIFA22", List.of(
                 new GamerDto(1L, "Hayk Hovhannisyan", PRO, "Armenia", "Yerevan")
         ));
@@ -105,6 +108,24 @@ public class GameControllerTest {
 
                 .andExpect(jsonPath("$.gamers.[1].id", is(this.gameUnlinkedResponseDto.getGamers().get(1).getId()), Long.class))
                 .andExpect(jsonPath("$.gamers.[1].name", is(this.gameUnlinkedResponseDto.getGamers().get(1).getName()), String.class));
+    }
+
+    @Test
+    @DataSet(cleanBefore = true, value = {"controller/gamer/allGamersWithAllGames.yml"})
+    @DisplayName("Return gamer json data linked to game")
+    public void givenGameIdAndLevelAndGeography_whenRetrieveGamersByGameAndLevelAndGeography_thenReturnJson() throws Exception {
+        String jsonBody = objectMapper.writeValueAsString(this.searchGamerRequestDto);
+        mockMvc
+                .perform(
+                        post("/api/v1/games/gamers")
+                                .content(jsonBody)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
+                .andExpect(jsonPath("$.[0].gameId", is(this.gameLinkedResponseDto.getGameId()), Long.class))
+                .andExpect(jsonPath("$.[0].gameName", is(this.gameLinkedResponseDto.getGameName()), String.class));
     }
 
     @Test

@@ -12,4 +12,6 @@ public interface GamerRepository extends JpaRepository<Gamer, Long> {
     List<Gamer> findByLevel(Level level);
 
     List<Gamer> findByLevelAndGame_id(Level level, Long gameId);
+
+    List<Gamer> findByGame_idAndLevelAndCountryAndCity(Long gameId, Level level, String country, String city);
 }
