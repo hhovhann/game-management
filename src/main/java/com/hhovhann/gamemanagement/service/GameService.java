@@ -9,32 +9,32 @@ import java.util.List;
 
 public interface GameService {
     /***
-     * API to link gamer to a game"
+     * API to link gamer to a game
      */
     GameResponseDto linkGamerToGame(GameRequestDto gamerRequestDto);
 
     /***
-     * API to unlink gamer from game"
+     * CRUD API to unlink gamer from game
      */
     GameResponseDto unLinkGamerFromGame(GameRequestDto gamerRequestDto);
 
     /***
-     * Search API based on level, game and geography for auto-matching gamers.
+     * Search API: retrieve all gamers.
      */
     List<SearchGamerResponseDto> retrieveAllGamers();
 
     /***
-     * API to get the gamers on a specific level(ex. INVINCIBLE) per game business logic here
+     * Search API: retrieve all gamers on a specific level(ex. INVINCIBLE)
      */
     List<SearchGamerResponseDto> retrieveGamersOnSpecificLevel(String gameLevel);
 
     /***
-     * API to get the gamers on a specific level(ex. INVINCIBLE) and specific game(ex. 1L - FIFA22)
+     * Search API: retrieve all gamers on a specific level(ex. INVINCIBLE) and specific game (ex. 1L - FIFA22)
      */
     List<SearchGamerResponseDto> retrieveGamersOnSpecificLevelAndSpecificGame(String gameLevel, Long gameId);
 
     /***
-     * API to get the gamers on a specific level(ex. INVINCIBLE) and specific game(ex. 1L - FIFA22)
+     * Search API: retrieve all gamers on a specific level(ex. INVINCIBLE) and specific game (ex. 1L - FIFA22) and specific geography (ex. country: Armenia, city: Yerevan)
      */
     List<SearchGamerResponseDto> retrieveGamersOnSpecificGameAndSpecificLevelAndGeography(SearchGamerRequestDto searchGamerRequestDto);
 }

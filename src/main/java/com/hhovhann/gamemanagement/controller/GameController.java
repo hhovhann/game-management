@@ -19,7 +19,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Validated
-@Tag(name = "Game Endpoints")
+@Tag(name = "Game Endpoints Version 1", description = "Game CRUD and Search API")
 @RestController
 public class GameController {
     private final GameService gameService;
@@ -41,7 +41,7 @@ public class GameController {
     }
 
     @ResponseBody
-    @GetMapping(value = "api/v1/game/gamers", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "api/v1/game/gamers", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SearchGamerResponseDto>> searchGamers() {
         return ResponseEntity.ok(gameService.retrieveAllGamers());
     }
